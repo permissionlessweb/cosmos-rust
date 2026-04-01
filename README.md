@@ -36,23 +36,25 @@ all other crates, simply make the required edits in [main.rs](proto-build/main.r
 
 Rust **1.72**
 
-[//]: # "crates"
 
-[`cosmrs`]: https://github.com/cosmos/cosmos-rust/tree/main/cosmrs
+
+
+
+
+
+
+
 [`cosmos‑sdk‑proto`]: https://github.com/cosmos/cosmos-rust/tree/main/cosmos-sdk-proto
-
-[//]: # "badges"
-
-[cosmrs-crate-img]: https://img.shields.io/crates/v/cosmrs.svg?logo=rust
-[cosmrs-crate-link]: https://crates.io/crates/cosmrs
-[cosmrs-docs-img]: https://docs.rs/cosmrs/badge.svg
-[cosmrs-docs-link]: https://docs.rs/cosmrs/
-[cosmrs-ci-img]: https://github.com/cosmos/cosmos-rust/workflows/cosmrs/badge.svg
-[cosmrs-ci-link]: https://github.com/cosmos/cosmos-rust/actions/workflows/cosmrs.yml
-
-[cosmos-sdk-proto-crate-img]: https://img.shields.io/crates/v/cosmos-sdk-proto.svg?logo=rust
-[cosmrs-crate-link]: https://crates.io/crates/cosmos-sdk-proto
-[cosmos-sdk-proto-docs-img]: https://docs.rs/cosmos-sdk-proto/badge.svg
-[cosmos-sdk-proto-docs-link]: https://docs.rs/cosmos-sdk-proto/
+[`cosmrs`]: https://github.com/cosmos/cosmos-rust/tree/main/cosmrs
 [cosmos-sdk-proto-ci-img]: https://github.com/cosmos/cosmos-rust/workflows/cosmos-sdk-proto/badge.svg
 [cosmos-sdk-proto-ci-link]: https://github.com/cosmos/cosmos-rust/actions/workflows/cosmos-sdk-proto.yml
+[cosmos-sdk-proto-crate-img]: https://img.shields.io/crates/v/cosmos-sdk-proto.svg?logo=rust
+[cosmos-sdk-proto-docs-img]: https://docs.rs/cosmos-sdk-proto/badge.svg
+[cosmrs-ci-img]: https://github.com/cosmos/cosmos-rust/workflows/cosmrs/badge.svg
+[cosmrs-ci-link]: https://github.com/cosmos/cosmos-rust/actions/workflows/cosmrs.yml
+[cosmrs-crate-img]: https://img.shields.io/crates/v/cosmrs.svg?logo=rust
+[cosmrs-crate-link]: https://crates.io/crates/cosmrs
+[cosmrs-crate-link]: https://crates.io/crates/cosmos-sdk-proto
+[cosmrs-crate-link]: https://crates.io/crates/cosmos-sdk-proto
+[cosmrs-docs-img]: https://docs.rs/cosmrs/badge.svg
+[cosmrs-docs-link]: https://docs.rs/cosmrs/
