@@ -13,17 +13,18 @@ readme = "README.md"
 categories = ["cryptography", "cryptography::cryptocurrencies", "database"]
 keywords = ["blockchain", "cosmos", "tendermint", "proto"]
 edition = "2021"
-rust-version = "1.75"
+rust-version = "1.88"
+
 
 [dependencies]
-prost = { version = "0.14.1", default-features = false }
-tendermint-proto = { version = "0.40.4", git = "https://github.com/permissionlessweb/tendermint-rs" }
+prost = { version = "0.14.3", default-features = false }
+tendermint-proto = { workspace = true }
 http-body-util = "0.1.3"
 bytes = "1.0" 
 
 # Optional dependencies
-tonic = { version = "0.14.1", optional = true, default-features = false, features = ["codegen"] }
-tonic-prost = { version = "0.14.1", optional = true, default-features = false }
+tonic = { version = "0.14.5", optional = true, default-features = false, features = ["codegen"] }
+tonic-prost = { version = "0.14.5", optional = true, default-features = false }
 serde = { version = "1.0.203", optional = true, default-features = false, features = ["alloc"] }
 pbjson = { package = "informalsystems-pbjson", optional = true, default-features = false, version = "0.7", git = "https://github.com/permissionlessweb/pbjson" }
 
@@ -33,6 +34,7 @@ std = ["prost/std", "tendermint-proto/std"]
 grpc = ["std", "tonic", "tonic-prost"]
 grpc-transport = ["grpc", "tonic/transport"]
 cosmwasm = []
+xion = []
 serde = ["dep:serde", "pbjson"]
 
 [package.metadata.docs.rs]
