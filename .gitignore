@@ -1,1 +1,4 @@
 target/
+cosmos-sdk-go/
+wasmd/
+xion/
