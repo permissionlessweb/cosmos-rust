@@ -9,8 +9,6 @@ exclude = [
 ]
 
 [workspace.dependencies]
-# internal (path-only: cosmos-sdk-proto is a workspace member, not an external dep)
-cosmos-sdk-proto = { path = "cosmos-sdk-proto" }
 # tendermint-rs (local fork)
 tendermint = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main" }
 tendermint-proto = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main" }
