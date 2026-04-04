@@ -8,7 +8,7 @@ members = [
 
 [workspace.dependencies]
 # internal
-cosmos-sdk-proto = { git = "https://github.com/permissionlessweb/cosmos-rust", branch = "main" }
+cosmos-sdk-proto = { version = "0.28.0", path = "cosmos-sdk-proto" }
 # tendermint-rs (local fork)
 tendermint = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main" }
 tendermint-proto = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main" }
