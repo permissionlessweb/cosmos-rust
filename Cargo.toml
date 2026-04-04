@@ -1,9 +1,11 @@
 [workspace]
 resolver = "2"
 members = [
-    "proto-build",
     "cosmos-sdk-proto",
     "cosmrs"
+]
+exclude = [
+    "proto-build"
 ]
 
 [workspace.dependencies]
