@@ -255,3 +255,71 @@ pub mod cosmwasm {
         }
     }
 }
+
+/// Xion chain protobuf definitions.
+#[cfg(feature = "xion")]
+pub mod xion {
+    pub mod v1 {
+        include!("prost/xion/xion.v1.rs");
+
+        /// JWK validation queries.
+        pub mod jwk {
+            include!("prost/xion/xion.jwk.v1.rs");
+        }
+
+        /// ZK proof types.
+        pub mod zk {
+            include!("prost/xion/xion.zk.v1.rs");
+        }
+    }
+    pub mod dkim {
+        pub mod v1 {
+            include!("prost/xion/xion.dkim.v1.rs");
+        }
+    }
+    pub mod feeabs {
+        pub mod v1beta1 {
+            include!("prost/xion/xion.feeabs.v1beta1.rs");
+        }
+    }
+    pub mod globalfee {
+        pub mod v1 {
+            include!("prost/xion/xion.globalfee.v1.rs");
+        }
+    }
+    pub mod indexer {
+        pub mod authz {
+            pub mod v1 {
+                include!("prost/xion/xion.indexer.authz.v1.rs");
+            }
+        }
+        pub mod feegrant {
+            pub mod v1 {
+                include!("prost/xion/xion.indexer.feegrant.v1.rs");
+            }
+        }
+    }
+    pub mod jwk {
+        pub mod v1 {
+            include!("prost/xion/xion.jwk.v1.rs");
+        }
+    }
+    pub mod mint {
+        pub mod v1 {
+            include!("prost/xion/xion.mint.v1.rs");
+        }
+    }
+    pub mod zk {
+        pub mod v1 {
+            include!("prost/xion/xion.zk.v1.rs");
+        }
+    }
+}
+
+/// Abstract Account protobuf definitions (Xion).
+#[cfg(feature = "xion")]
+pub mod abstract_account {
+    pub mod v1 {
+        include!("prost/xion/abstractaccount.v1.rs");
+    }
+}

@@ -1,4 +1,4 @@
 target/
-cosmos-sdk-go/
-wasmd/
-xion/
+/cosmos-sdk-go/
+/wasmd/
+/xion/
