@@ -26,7 +26,7 @@ bytes = "1.0"
 tonic = { version = "0.14.5", optional = true, default-features = false, features = ["codegen"] }
 tonic-prost = { version = "0.14.5", optional = true, default-features = false }
 serde = { version = "1.0.203", optional = true, default-features = false, features = ["alloc"] }
-pbjson = { package = "informalsystems-pbjson", path = "../../pbjson/pbjson", default-features = false, optional = true }
+pbjson = { package = "informalsystems-pbjson", git = "https://github.com/permissionlessweb/pbjson", branch = "zk-mvp", default-features = false, optional = true }
 
 [features]
 default = ["grpc-transport"]
