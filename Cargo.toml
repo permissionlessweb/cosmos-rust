@@ -10,6 +10,6 @@ exclude = [
 
 [workspace.dependencies]
 # tendermint-rs (local fork)
-tendermint = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main" }
-tendermint-proto = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main" }
-tendermint-rpc = { git = "https://github.com/permissionlessweb/tendermint-rs", branch = "main" }
+tendermint = { path = "../tendermint-rs/tendermint" }
+tendermint-proto = { path = "../tendermint-rs/proto" }
+tendermint-rpc = { path = "../tendermint-rs/rpc" }
