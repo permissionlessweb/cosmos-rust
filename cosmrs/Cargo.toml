@@ -11,6 +11,19 @@ keywords = ["blockchain", "cosmos", "tendermint", "transaction"]
 edition = "2021"
 rust-version = "1.88"
 
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
+[features]
+default   = ["bip32", "getrandom"]
+cosmwasm  = ["cosmos-sdk-proto/cosmwasm"]
+dev       = ["rpc", "tokio"]
+getrandom = ["rand_core/getrandom"]
+grpc      = ["cosmos-sdk-proto/grpc-transport", "grpc-core"]
+grpc-core = ["cosmos-sdk-proto/grpc"]
+rpc       = ["dep:tendermint-rpc"]
+
 [dependencies]
 cosmos-sdk-proto = { git = "https://github.com/permissionlessweb/cosmos-rust", branch = "zk-mvp" }
 ecdsa = "0.16"
@@ -31,16 +44,3 @@ tokio = { version = "1", optional = true }
 
 [dev-dependencies]
 hex-literal = "0.4"
-
-[features]
-default   = ["bip32", "getrandom"]
-cosmwasm  = ["cosmos-sdk-proto/cosmwasm"]
-dev       = ["rpc", "tokio"]
-getrandom = ["rand_core/getrandom"]
-grpc      = ["cosmos-sdk-proto/grpc-transport", "grpc-core"]
-grpc-core = ["cosmos-sdk-proto/grpc"]
-rpc       = ["dep:tendermint-rpc"]
-
-[package.metadata.docs.rs]
-all-features = true
-rustdoc-args = ["--cfg", "docsrs"]
