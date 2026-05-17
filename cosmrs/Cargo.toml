@@ -25,7 +25,7 @@ grpc-core = ["cosmos-sdk-proto/grpc"]
 rpc       = ["dep:tendermint-rpc"]
 
 [dependencies]
-cosmos-sdk-proto = { git = "https://github.com/permissionlessweb/cosmos-rust", branch = "zk-mvp" }
+cosmos-sdk-proto = { path = "../cosmos-sdk-proto" }
 ecdsa = "0.16"
 eyre = "0.6"
 k256 = { version = "0.13", default-features = false, features = ["ecdsa", "sha256"] }

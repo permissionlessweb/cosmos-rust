@@ -33,7 +33,7 @@ const COSMOS_SDK_PROTO_DIR: &str = "../cosmos-sdk-proto/src/prost/";
 /// Directory where the cosmos-sdk submodule is located
 const COSMOS_SDK_DIR: &str = "../cosmos-sdk-go";
 /// Directory where the submodule is located
-const WASMD_DIR: &str = "../wasmd";
+const WASMD_DIR: &str = "../../zk-wasmd";
 /// A temporary directory for proto building
 const TMP_BUILD_DIR: &str = "/tmp/tmp-protobuf/";
 
@@ -64,9 +64,9 @@ fn main() {
     let tmp_build_dir: PathBuf = TMP_BUILD_DIR.parse().unwrap();
     let proto_dir: PathBuf = COSMOS_SDK_PROTO_DIR.parse().unwrap();
 
-    if tmp_build_dir.exists() {
-        fs::remove_dir_all(tmp_build_dir.clone()).unwrap();
-    }
+    // if tmp_build_dir.exists() {
+    //     fs::remove_dir_all(tmp_build_dir.clone()).unwrap();
+    // }
 
     let temp_sdk_dir = tmp_build_dir.join("cosmos-sdk");
     let temp_wasmd_dir = tmp_build_dir.join("wasmd");
@@ -175,15 +175,15 @@ fn run_rustfmt(dir: &Path) {
 }
 
 fn update_submodules() {
-    info!("Updating cosmos/cosmos-sdk submodule...");
-    run_git(["submodule", "update", "--init"]);
-    run_git(["-C", COSMOS_SDK_DIR, "fetch"]);
-    run_git(["-C", COSMOS_SDK_DIR, "reset", "--hard", COSMOS_SDK_REV]);
+    // info!("Updating cosmos/cosmos-sdk submodule...");
+    // run_git(["submodule", "update", "--init"]);
+    // run_git(["-C", COSMOS_SDK_DIR, "fetch"]);
+    // run_git(["-C", COSMOS_SDK_DIR, "reset", "--hard", COSMOS_SDK_REV]);
 
     info!("Updating wasmd submodule...");
-    run_git(["submodule", "update", "--init"]);
-    run_git(["-C", WASMD_DIR, "fetch"]);
-    run_git(["-C", WASMD_DIR, "reset", "--hard", WASMD_REV]);
+    // run_git(["submodule", "update", "--init"]);
+    // run_git(["-C", WASMD_DIR, "fetch"]);
+    // run_git(["-C", WASMD_DIR, "reset", "--hard", WASMD_REV]);
 }
 
 fn output_sdk_version(out_dir: &Path) {

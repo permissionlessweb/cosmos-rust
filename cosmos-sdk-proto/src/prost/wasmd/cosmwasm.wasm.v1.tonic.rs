@@ -228,6 +228,24 @@ pub mod query_client {
                 .insert(GrpcMethod::new("cosmwasm.wasm.v1.Query", "Code"));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn circuit(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryCircuitRequest>,
+        ) -> core::result::Result<tonic::Response<super::QueryCircuitResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    alloc::format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Query/Circuit");
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("cosmwasm.wasm.v1.Query", "Circuit"));
+            self.inner.unary(req, path, codec).await
+        }
         pub async fn codes(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryCodesRequest>,
@@ -264,6 +282,24 @@ pub mod query_client {
                 .insert(GrpcMethod::new("cosmwasm.wasm.v1.Query", "CodeInfo"));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn circuit_info(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryCircuitInfoRequest>,
+        ) -> core::result::Result<tonic::Response<super::QueryCircuitInfoResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    alloc::format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Query/CircuitInfo");
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("cosmwasm.wasm.v1.Query", "CircuitInfo"));
+            self.inner.unary(req, path, codec).await
+        }
         pub async fn pinned_codes(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryPinnedCodesRequest>,
@@ -280,6 +316,25 @@ pub mod query_client {
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("cosmwasm.wasm.v1.Query", "PinnedCodes"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn pinned_circuits(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryPinnedCircuitsRequest>,
+        ) -> core::result::Result<tonic::Response<super::QueryPinnedCircuitsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    alloc::format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Query/PinnedCircuits");
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("cosmwasm.wasm.v1.Query", "PinnedCircuits"));
             self.inner.unary(req, path, codec).await
         }
         pub async fn params(
@@ -465,6 +520,47 @@ pub mod msg_client {
             let mut req = request.into_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("cosmwasm.wasm.v1.Msg", "StoreCode"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn store_circuit(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgStoreCircuit>,
+        ) -> core::result::Result<tonic::Response<super::MsgStoreCircuitResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    alloc::format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Msg/StoreCircuit");
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("cosmwasm.wasm.v1.Msg", "StoreCircuit"));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn store_code_with_circuit(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgStoreCodeWithCircuit>,
+        ) -> core::result::Result<
+            tonic::Response<super::MsgStoreCodeWithCircuitResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    alloc::format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Msg/StoreCodeWithCircuit");
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "cosmwasm.wasm.v1.Msg",
+                "StoreCodeWithCircuit",
+            ));
             self.inner.unary(req, path, codec).await
         }
         pub async fn instantiate_contract(
@@ -683,6 +779,24 @@ pub mod msg_client {
                 .insert(GrpcMethod::new("cosmwasm.wasm.v1.Msg", "UnpinCodes"));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn unpin_circuits(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgUnpinCircuits>,
+        ) -> core::result::Result<tonic::Response<super::MsgUnpinCircuitsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    alloc::format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Msg/UnpinCircuits");
+            let mut req = request.into_request();
+            req.extensions_mut()
+                .insert(GrpcMethod::new("cosmwasm.wasm.v1.Msg", "UnpinCircuits"));
+            self.inner.unary(req, path, codec).await
+        }
         pub async fn store_and_instantiate_contract(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgStoreAndInstantiateContract>,
@@ -731,6 +845,30 @@ pub mod msg_client {
             ));
             self.inner.unary(req, path, codec).await
         }
+        pub async fn remove_circuit_upload_params_addresses(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgRemoveCircuitUploadParamsAddresses>,
+        ) -> core::result::Result<
+            tonic::Response<super::MsgRemoveCircuitUploadParamsAddressesResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    alloc::format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmwasm.wasm.v1.Msg/RemoveCircuitUploadParamsAddresses",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "cosmwasm.wasm.v1.Msg",
+                "RemoveCircuitUploadParamsAddresses",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
         pub async fn add_code_upload_params_addresses(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgAddCodeUploadParamsAddresses>,
@@ -752,6 +890,30 @@ pub mod msg_client {
             req.extensions_mut().insert(GrpcMethod::new(
                 "cosmwasm.wasm.v1.Msg",
                 "AddCodeUploadParamsAddresses",
+            ));
+            self.inner.unary(req, path, codec).await
+        }
+        pub async fn add_circuit_upload_params_addresses(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgAddCircuitUploadParamsAddresses>,
+        ) -> core::result::Result<
+            tonic::Response<super::MsgAddCircuitUploadParamsAddressesResponse>,
+            tonic::Status,
+        > {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    alloc::format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic_prost::ProstCodec::default();
+            let path = http::uri::PathAndQuery::from_static(
+                "/cosmwasm.wasm.v1.Msg/AddCircuitUploadParamsAddresses",
+            );
+            let mut req = request.into_request();
+            req.extensions_mut().insert(GrpcMethod::new(
+                "cosmwasm.wasm.v1.Msg",
+                "AddCircuitUploadParamsAddresses",
             ));
             self.inner.unary(req, path, codec).await
         }

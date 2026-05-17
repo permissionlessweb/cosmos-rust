@@ -27,6 +27,9 @@ pub struct ContractInfo {
     /// The IBC port ID assigned to this contract by wasmd.
     /// This is set for all IBC contracts (<https://github.com/CosmWasm/wasmd/blob/v0.16.0/x/wasm/keeper/keeper.go#L299-L306>).
     pub ibc_port_id: String,
+    /// The IBC port ID assigned to this contract by wasmd.
+    /// This is set for all IBC contracts (<https://github.com/CosmWasm/wasmd/blob/v0.16.0/x/wasm/keeper/keeper.go#L299-L306>).
+    pub ibc2_port_id: String,
 }
 
 impl TryFrom<proto::cosmwasm::wasm::v1::ContractInfo> for ContractInfo {
@@ -40,6 +43,7 @@ impl TryFrom<proto::cosmwasm::wasm::v1::ContractInfo> for ContractInfo {
             label: proto.label,
             created: proto.created.map(TryFrom::try_from).transpose()?,
             ibc_port_id: proto.ibc_port_id,
+            ibc2_port_id: proto.ibc2_port_id,
         })
     }
 }
@@ -57,6 +61,7 @@ impl From<ContractInfo> for proto::cosmwasm::wasm::v1::ContractInfo {
             created: info.created.map(Into::into),
             ibc_port_id: info.ibc_port_id,
             extension: None,
+            ibc2_port_id: info.ibc2_port_id,
         }
     }
 }

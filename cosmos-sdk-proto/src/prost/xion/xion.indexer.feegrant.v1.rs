@@ -51,8 +51,7 @@ pub struct QueryAllowancesRequest {
     pub grantee: ::prost::alloc::string::String,
     /// pagination defines pagination for the request.
     #[prost(message, optional, tag = "2")]
-    pub pagination:
-        ::core::option::Option<crate::cosmos::base::query::v1beta1::PageRequest>,
+    pub pagination: ::core::option::Option<crate::cosmos::base::query::v1beta1::PageRequest>,
 }
 impl ::prost::Name for QueryAllowancesRequest {
     const NAME: &'static str = "QueryAllowancesRequest";
@@ -74,8 +73,7 @@ pub struct QueryAllowancesResponse {
     pub allowances: ::prost::alloc::vec::Vec<crate::cosmos::feegrant::v1beta1::Grant>,
     /// pagination defines pagination for the response.
     #[prost(message, optional, tag = "2")]
-    pub pagination:
-        ::core::option::Option<crate::cosmos::base::query::v1beta1::PageResponse>,
+    pub pagination: ::core::option::Option<crate::cosmos::base::query::v1beta1::PageResponse>,
 }
 impl ::prost::Name for QueryAllowancesResponse {
     const NAME: &'static str = "QueryAllowancesResponse";
@@ -97,8 +95,7 @@ pub struct QueryAllowancesByGranterRequest {
     pub granter: ::prost::alloc::string::String,
     /// pagination defines pagination for the request.
     #[prost(message, optional, tag = "2")]
-    pub pagination:
-        ::core::option::Option<crate::cosmos::base::query::v1beta1::PageRequest>,
+    pub pagination: ::core::option::Option<crate::cosmos::base::query::v1beta1::PageRequest>,
 }
 impl ::prost::Name for QueryAllowancesByGranterRequest {
     const NAME: &'static str = "QueryAllowancesByGranterRequest";
@@ -120,8 +117,7 @@ pub struct QueryAllowancesByGranterResponse {
     pub allowances: ::prost::alloc::vec::Vec<crate::cosmos::feegrant::v1beta1::Grant>,
     /// pagination defines pagination for the response.
     #[prost(message, optional, tag = "2")]
-    pub pagination:
-        ::core::option::Option<crate::cosmos::base::query::v1beta1::PageResponse>,
+    pub pagination: ::core::option::Option<crate::cosmos::base::query::v1beta1::PageResponse>,
 }
 impl ::prost::Name for QueryAllowancesByGranterResponse {
     const NAME: &'static str = "QueryAllowancesByGranterResponse";
