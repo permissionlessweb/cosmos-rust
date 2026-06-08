@@ -3,7 +3,9 @@ use crate::{proto, tx::Msg, ErrorReport, Result};
 /// MsgCancelContinuousFund represents a message to withdraw a delegator's reward from a validator.
 #[derive(Clone, Debug, Eq, PartialEq, PartialOrd, Ord)]
 pub struct MsgCancelContinuousFund {
+    /// sender
     pub authority: String,
+    /// recipient
     pub recipient: String,
 }
 

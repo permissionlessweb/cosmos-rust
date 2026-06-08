@@ -26,7 +26,9 @@ pub use self::{
     msg_execute_contract::{MsgExecuteContract, MsgExecuteContractResponse},
     msg_initiate_contract::{MsgInstantiateContract, MsgInstantiateContractResponse},
     msg_migrate_contract::{MsgMigrateContract, MsgMigrateContractResponse},
-    msg_store_code::{MsgStoreCode, MsgStoreCodeResponse},
+    msg_store_code::{
+        MsgStoreCircuit, MsgStoreCircuitResponse, MsgStoreCode, MsgStoreCodeResponse,
+    },
     msg_update_admin::{MsgUpdateAdmin, MsgUpdateAdminResponse},
     query_code_response::QueryCodeResponse,
 };

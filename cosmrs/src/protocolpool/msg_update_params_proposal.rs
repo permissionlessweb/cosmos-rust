@@ -5,7 +5,9 @@ use crate::{proto, tx::Msg, ErrorReport, Result};
 /// WithdrawValidatorCommission submits a proposal to update protocolpool module params. Note: the entire params must be provided.
 #[derive(Clone, Debug, PartialEq)]
 pub struct MsgUpdateParams {
+    /// sender 
     pub authority: String,
+    /// parameters of protocol pool
     pub params: Option<Params>,
 }
 

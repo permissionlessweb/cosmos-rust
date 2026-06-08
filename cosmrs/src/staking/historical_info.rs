@@ -1,8 +1,6 @@
 use crate::staking::Validator;
 use crate::{proto, ErrorReport, Result};
-use tendermint::block::header::Version;
 use tendermint::block::Header;
-use tendermint::chain::Id;
 
 /// HistoricalInfo contains header and validator information for a given block.
 /// It is stored as part of staking module's state, which persists the `n` most

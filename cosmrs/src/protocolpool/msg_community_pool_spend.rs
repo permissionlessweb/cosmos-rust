@@ -5,8 +5,11 @@ use crate::{proto, tx::Msg, ErrorReport, Result};
 /// MsgCommunityPoolSpend represents a message to set a withdraw address for staking rewards.
 #[derive(Clone, Debug, PartialEq)]
 pub struct MsgCommunityPoolSpend {
+    /// authority
     pub authority: String,
+    /// recipient
     pub recipient: String,
+    /// amount
     pub amount: Vec<Coin>,
 }
 

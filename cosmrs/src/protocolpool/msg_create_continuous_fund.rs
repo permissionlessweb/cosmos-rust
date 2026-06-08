@@ -5,9 +5,13 @@ use crate::{proto, tx::Msg, ErrorReport, Result};
 /// MsgCreateContinuousFund represents a message to withdraw a delegator's reward from a validator.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct MsgCreateContinuousFund {
+    /// Authority sender
     pub authority: String,
+    /// recipient of protocolpool funding stream
     pub recipient: String,
+    /// percentage of delegators reward from a validator
     pub percentage: String,
+    /// expiration of continuous funds
     pub expiry: Option<Timestamp>,
 }
 
