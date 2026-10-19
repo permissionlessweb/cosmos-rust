@@ -5,18 +5,12 @@ exclude = ["proto-build"]
 
 [workspace.dependencies]
 # Default is the published revision. The patch below keeps a sibling checkout.
-tendermint = { git = "https://github.com/permissionlessweb/tendermint-rs", rev = "664b02d82354edffdf788677a43d8fdd1199f974", package = "tendermint" }
-tendermint-proto = { git = "https://github.com/permissionlessweb/tendermint-rs", rev = "664b02d82354edffdf788677a43d8fdd1199f974", package = "tendermint-proto" }
-tendermint-rpc = { git = "https://github.com/permissionlessweb/tendermint-rs", rev = "664b02d82354edffdf788677a43d8fdd1199f974", package = "tendermint-rpc" }
+tendermint = { package = "tendermint", version = "0.40.4" }
+tendermint-proto = { package = "tendermint-proto", version = "0.40.4" }
+tendermint-rpc = { package = "tendermint-rpc", version = "0.40.4" }
+[patch.crates-io]
 
-[patch.'https://github.com/permissionlessweb/cosmos-rust']
-cosmos-sdk-proto = { path = "cosmos-sdk-proto" }
-cosmrs = { path = "cosmrs" }
-
-[patch.'https://github.com/permissionlessweb/tendermint-rs']
-tendermint = { path = "../tendermint-rs/tendermint", package = "tendermint" }
-tendermint-proto = { path = "../tendermint-rs/proto", package = "tendermint-proto" }
-tendermint-rpc = { path = "../tendermint-rs/rpc", package = "tendermint-rpc" }
-
-[patch.'https://github.com/permissionlessweb/pbjson']
 informalsystems-pbjson = { path = "../pbjson/pbjson" }
+tendermint = { path = "../tendermint-rs/tendermint" }
+tendermint-proto = { path = "../tendermint-rs/proto" }
+tendermint-rpc = { path = "../tendermint-rs/rpc" }

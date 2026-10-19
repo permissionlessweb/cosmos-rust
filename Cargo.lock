@@ -192,6 +192,7 @@ dependencies = [
  "cosmos-sdk-proto",
  "ecdsa",
  "eyre",
+ "getrandom",
  "hex-literal",
  "k256",
  "rand_core",
