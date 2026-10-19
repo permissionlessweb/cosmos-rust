@@ -9,7 +9,7 @@ readme = "README.md"
 categories = ["cryptography", "cryptography::cryptocurrencies", "encoding"]
 keywords = ["blockchain", "cosmos", "tendermint", "transaction"]
 edition = "2021"
-rust-version = "1.88"
+rust-version = "1.86"
 
 [package.metadata.docs.rs]
 all-features = true
@@ -24,8 +24,19 @@ grpc      = ["cosmos-sdk-proto/grpc-transport", "grpc-core"]
 grpc-core = ["cosmos-sdk-proto/grpc"]
 rpc       = ["dep:tendermint-rpc"]
 
+# signature/std pulls rand_core/getrandom. getrandom 0.2 does not compile for
+# wasm32-unknown-unknown unless `custom` is on. The guest never calls OsRng;
+# contracts that do register their own backend (see cw-headstash).
+[target.'cfg(not(all(target_arch = "wasm32", target_os = "unknown")))'.dependencies]
+cosmos-sdk-proto = { path = "../cosmos-sdk-proto", features = ["grpc-transport"] }
+
+[target.'cfg(all(target_arch = "wasm32", target_os = "unknown"))'.dependencies]
+getrandom = { version = "0.2.17", default-features = false, features = ["custom"] }
+
 [dependencies]
-cosmos-sdk-proto = { path = "../cosmos-sdk-proto" }
+# grpc-transport pulls tonic/tokio/mio, which do not compile for wasm32.
+# Host builds opt back in below. Guest builds keep prost messages only.
+cosmos-sdk-proto = { path = "../cosmos-sdk-proto", default-features = false, features = ["std"] }
 ecdsa = "0.16"
 eyre = "0.6"
 k256 = { version = "0.13", default-features = false, features = ["ecdsa", "sha256"] }

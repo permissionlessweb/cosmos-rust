@@ -4,11 +4,19 @@ members = ["cosmos-sdk-proto", "cosmrs"]
 exclude = ["proto-build"]
 
 [workspace.dependencies]
-# tendermint-rs (local fork)
-tendermint = { git = "ssh://returniflost@groot-wan/Users/returniflost/abstract/terp-core/crates/tendermint-rs", branch = "v3.1.0-zk.0", package = "tendermint" }
-tendermint-proto = { git = "ssh://returniflost@groot-wan/Users/returniflost/abstract/terp-core/crates/tendermint-rs", branch = "v3.1.0-zk.0", package = "tendermint-proto" }
-tendermint-rpc = { git = "ssh://returniflost@groot-wan/Users/returniflost/abstract/terp-core/crates/tendermint-rs", branch = "v3.1.0-zk.0", package = "tendermint-rpc" }
+# Default is the published revision. The patch below keeps a sibling checkout.
+tendermint = { git = "https://github.com/permissionlessweb/tendermint-rs", rev = "664b02d82354edffdf788677a43d8fdd1199f974", package = "tendermint" }
+tendermint-proto = { git = "https://github.com/permissionlessweb/tendermint-rs", rev = "664b02d82354edffdf788677a43d8fdd1199f974", package = "tendermint-proto" }
+tendermint-rpc = { git = "https://github.com/permissionlessweb/tendermint-rs", rev = "664b02d82354edffdf788677a43d8fdd1199f974", package = "tendermint-rpc" }
 
 [patch.'https://github.com/permissionlessweb/cosmos-rust']
 cosmos-sdk-proto = { path = "cosmos-sdk-proto" }
 cosmrs = { path = "cosmrs" }
+
+[patch.'https://github.com/permissionlessweb/tendermint-rs']
+tendermint = { path = "../tendermint-rs/tendermint", package = "tendermint" }
+tendermint-proto = { path = "../tendermint-rs/proto", package = "tendermint-proto" }
+tendermint-rpc = { path = "../tendermint-rs/rpc", package = "tendermint-rpc" }
+
+[patch.'https://github.com/permissionlessweb/pbjson']
+informalsystems-pbjson = { path = "../pbjson/pbjson" }
