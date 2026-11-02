@@ -9,7 +9,7 @@ readme = "README.md"
 categories = ["cryptography", "cryptography::cryptocurrencies", "encoding"]
 keywords = ["blockchain", "cosmos", "tendermint", "transaction"]
 edition = "2021"
-rust-version = "1.86"
+rust-version = "1.87"
 
 [package.metadata.docs.rs]
 all-features = true
@@ -19,7 +19,7 @@ rustdoc-args = ["--cfg", "docsrs"]
 default   = ["bip32", "getrandom"]
 cosmwasm  = ["cosmos-sdk-proto/cosmwasm"]
 dev       = ["rpc", "tokio"]
-getrandom = ["rand_core/getrandom"]
+getrandom = ["k256/getrandom"]
 grpc      = ["cosmos-sdk-proto/grpc-transport", "grpc-core"]
 grpc-core = ["cosmos-sdk-proto/grpc"]
 rpc       = ["dep:tendermint-rpc"]
@@ -37,19 +37,18 @@ getrandom = { version = "0.2.17", default-features = false, features = ["custom"
 # grpc-transport pulls tonic/tokio/mio, which do not compile for wasm32.
 # Host builds opt back in below. Guest builds keep prost messages only.
 cosmos-sdk-proto = { path = "../cosmos-sdk-proto", default-features = false, features = ["std"] }
-ecdsa = "0.16"
+ecdsa = "0.17"
 eyre = "0.6"
-k256 = { version = "0.13", default-features = false, features = ["ecdsa", "sha256"] }
-rand_core = { version = "0.6", default-features = false }
+k256 = { version = "0.14", default-features = false, features = ["ecdsa", "sha256"] }
 serde = { version = "1", features = ["serde_derive"] }
 serde_json = "1"
-signature = { version = "2", features = ["std"] }
+signature = "3"
 subtle-encoding = { version = "0.5", features = ["bech32-preview"] }
 tendermint = { workspace = true, features = ["secp256k1"] }
 thiserror = "1"
 
 # optional dependencies
-bip32 = { version = "0.5", optional = true, default-features = false, features = ["alloc", "secp256k1"] }
+bip32 = { version = "0.6", optional = true, default-features = false, features = ["alloc", "secp256k1"] }
 tendermint-rpc = { workspace = true, optional = true, features = ["http-client"] }
 tokio = { version = "1", optional = true }
 

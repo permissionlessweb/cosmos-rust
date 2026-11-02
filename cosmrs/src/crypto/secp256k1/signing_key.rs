@@ -8,7 +8,7 @@ use ecdsa::signature::{Keypair, Signer};
 use k256::ecdsa::VerifyingKey;
 
 #[cfg(feature = "getrandom")]
-use rand_core::OsRng;
+use k256::elliptic_curve::Generate;
 
 /// ECDSA/secp256k1 signing key (i.e. private key)
 ///
@@ -44,7 +44,7 @@ impl SigningKey {
     /// Generate a random signing key.
     #[cfg(feature = "getrandom")]
     pub fn random() -> Self {
-        Self::new(Box::new(k256::ecdsa::SigningKey::random(&mut OsRng)))
+        Self::new(Box::new(k256::ecdsa::SigningKey::generate()))
     }
 
     /// Derive a signing key from a [`bip32::DerivationPath`].
@@ -56,7 +56,7 @@ impl SigningKey {
         seed: impl AsRef<[u8]>,
         path: &bip32::DerivationPath,
     ) -> bip32::Result<Self> {
-        bip32::XPrv::derive_from_path(seed, path).map(Into::into)
+        bip32::XPrv::derive_from_path(&seed, path).map(Into::into)
     }
 
     /// Sign the given message, returning a signature.
