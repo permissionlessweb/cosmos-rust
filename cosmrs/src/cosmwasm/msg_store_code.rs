@@ -81,17 +81,40 @@ impl From<MsgStoreCodeResponse> for proto::cosmwasm::wasm::v1::MsgStoreCodeRespo
     }
 }
 
-/// MsgStoreCode submit Wasm code to the system
+/// Auth for store-full-circuit / store-vk-param.
+#[derive(Clone, Debug, Eq, PartialEq, PartialOrd, Ord)]
+pub struct CircuitParamAuth {
+    pub circuit_type: u64,
+    pub curve_type: u64,
+    pub k: u64,
+}
+
+impl From<CircuitParamAuth> for proto::cosmwasm::wasm::v1::CircuitParamAuth {
+    fn from(auth: CircuitParamAuth) -> proto::cosmwasm::wasm::v1::CircuitParamAuth {
+        proto::cosmwasm::wasm::v1::CircuitParamAuth {
+            circuit_type: auth.circuit_type,
+            curve_type: auth.curve_type,
+            k: auth.k,
+        }
+    }
+}
+
+impl From<proto::cosmwasm::wasm::v1::CircuitParamAuth> for CircuitParamAuth {
+    fn from(proto: proto::cosmwasm::wasm::v1::CircuitParamAuth) -> CircuitParamAuth {
+        CircuitParamAuth {
+            circuit_type: proto.circuit_type,
+            curve_type: proto.curve_type,
+            k: proto.k,
+        }
+    }
+}
+
+/// MsgStoreCircuit uploads a vk body that references an existing param key.
 #[derive(Clone, Debug, Eq, PartialEq, PartialOrd, Ord)]
 pub struct MsgStoreCircuit {
-    /// Sender is the that actor that signed the messages
     pub sender: AccountId,
-
-    /// circuit_binary
-    pub circuit_binary: Vec<u8>,
-
-    /// InstantiatePermission access control to apply on contract creation,
-    /// optional
+    pub param_key: u64,
+    pub vk_body: Vec<u8>,
     pub instantiate_permission: Option<AccessConfig>,
 }
 
@@ -105,7 +128,8 @@ impl TryFrom<proto::cosmwasm::wasm::v1::MsgStoreCircuit> for MsgStoreCircuit {
     fn try_from(proto: proto::cosmwasm::wasm::v1::MsgStoreCircuit) -> Result<MsgStoreCircuit> {
         Ok(MsgStoreCircuit {
             sender: proto.sender.parse()?,
-            circuit_binary: proto.circuit_binary,
+            param_key: proto.param_key,
+            vk_body: proto.vk_body,
             instantiate_permission: proto
                 .instantiate_permission
                 .map(TryFrom::try_from)
@@ -118,8 +142,51 @@ impl From<MsgStoreCircuit> for proto::cosmwasm::wasm::v1::MsgStoreCircuit {
     fn from(msg: MsgStoreCircuit) -> proto::cosmwasm::wasm::v1::MsgStoreCircuit {
         proto::cosmwasm::wasm::v1::MsgStoreCircuit {
             sender: msg.sender.to_string(),
-            circuit_binary: msg.circuit_binary,
+            param_key: msg.param_key,
+            vk_body: msg.vk_body,
             instantiate_permission: msg.instantiate_permission.map(Into::into),
+        }
+    }
+}
+
+/// MsgStoreFullCircuit uploads params + vk body in one transaction.
+#[derive(Clone, Debug, Eq, PartialEq, PartialOrd, Ord)]
+pub struct MsgStoreFullCircuit {
+    pub sender: AccountId,
+    pub auth: CircuitParamAuth,
+    pub params_body: Vec<u8>,
+    pub vk_body: Vec<u8>,
+}
+
+impl Msg for MsgStoreFullCircuit {
+    type Proto = proto::cosmwasm::wasm::v1::MsgStoreFullCircuit;
+}
+
+impl TryFrom<proto::cosmwasm::wasm::v1::MsgStoreFullCircuit> for MsgStoreFullCircuit {
+    type Error = ErrorReport;
+
+    fn try_from(
+        proto: proto::cosmwasm::wasm::v1::MsgStoreFullCircuit,
+    ) -> Result<MsgStoreFullCircuit> {
+        let auth = proto
+            .auth
+            .ok_or_else(|| ErrorReport::msg("circuit param auth is required"))?;
+        Ok(MsgStoreFullCircuit {
+            sender: proto.sender.parse()?,
+            auth: auth.into(),
+            params_body: proto.params_body,
+            vk_body: proto.vk_body,
+        })
+    }
+}
+
+impl From<MsgStoreFullCircuit> for proto::cosmwasm::wasm::v1::MsgStoreFullCircuit {
+    fn from(msg: MsgStoreFullCircuit) -> proto::cosmwasm::wasm::v1::MsgStoreFullCircuit {
+        proto::cosmwasm::wasm::v1::MsgStoreFullCircuit {
+            sender: msg.sender.to_string(),
+            auth: Some(msg.auth.into()),
+            params_body: msg.params_body,
+            vk_body: msg.vk_body,
         }
     }
 }

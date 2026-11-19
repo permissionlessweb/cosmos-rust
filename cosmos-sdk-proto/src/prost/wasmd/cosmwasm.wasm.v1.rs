@@ -2019,19 +2019,42 @@ impl ::prost::Name for MsgStoreCodeResponse {
         "/cosmwasm.wasm.v1.MsgStoreCodeResponse".into()
     }
 }
-/// MsgStoreCircuit submit Circuit code to the system
+/// Params auth for store-vk-param / store-full-circuit (matches wasmd CircuitParamAuth).
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CircuitParamAuth {
+    #[prost(uint64, tag = "1")]
+    pub circuit_type: u64,
+    #[prost(uint64, tag = "2")]
+    pub curve_type: u64,
+    #[prost(uint64, tag = "3")]
+    pub k: u64,
+}
+impl ::prost::Name for CircuitParamAuth {
+    const NAME: &'static str = "CircuitParamAuth";
+    const PACKAGE: &'static str = "cosmwasm.wasm.v1";
+    fn full_name() -> ::prost::alloc::string::String {
+        "cosmwasm.wasm.v1.CircuitParamAuth".into()
+    }
+    fn type_url() -> ::prost::alloc::string::String {
+        "/cosmwasm.wasm.v1.CircuitParamAuth".into()
+    }
+}
+/// MsgStoreCircuit uploads a vk body that references an existing param key.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgStoreCircuit {
     /// Sender is the actor that signed the messages
     #[prost(string, tag = "1")]
     pub sender: ::prost::alloc::string::String,
-    /// CircuitBinaryFile can be raw or gzip compressed
-    #[prost(bytes = "vec", tag = "2")]
-    pub circuit_binary: ::prost::alloc::vec::Vec<u8>,
-    /// InstantiatePermission access control to apply on contract creation,
-    /// (anyone, these-people, only me) optional
-    #[prost(message, optional, tag = "3")]
+    /// Appstate param id from MsgStoreVkParam / store-full-circuit.
+    #[prost(uint64, tag = "2")]
+    pub param_key: u64,
+    /// vk body: cs || vk || footer (raw or gzip)
+    #[prost(bytes = "vec", tag = "3")]
+    pub vk_body: ::prost::alloc::vec::Vec<u8>,
+    /// InstantiatePermission access control, optional
+    #[prost(message, optional, tag = "4")]
     pub instantiate_permission: ::core::option::Option<AccessConfig>,
 }
 impl ::prost::Name for MsgStoreCircuit {
@@ -2063,6 +2086,52 @@ impl ::prost::Name for MsgStoreCircuitResponse {
     }
     fn type_url() -> ::prost::alloc::string::String {
         "/cosmwasm.wasm.v1.MsgStoreCircuitResponse".into()
+    }
+}
+/// MsgStoreFullCircuit uploads params + vk body together.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgStoreFullCircuit {
+    #[prost(string, tag = "1")]
+    pub sender: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "2")]
+    pub auth: ::core::option::Option<CircuitParamAuth>,
+    #[prost(bytes = "vec", tag = "3")]
+    pub params_body: ::prost::alloc::vec::Vec<u8>,
+    #[prost(bytes = "vec", tag = "4")]
+    pub vk_body: ::prost::alloc::vec::Vec<u8>,
+}
+impl ::prost::Name for MsgStoreFullCircuit {
+    const NAME: &'static str = "MsgStoreFullCircuit";
+    const PACKAGE: &'static str = "cosmwasm.wasm.v1";
+    fn full_name() -> ::prost::alloc::string::String {
+        "cosmwasm.wasm.v1.MsgStoreFullCircuit".into()
+    }
+    fn type_url() -> ::prost::alloc::string::String {
+        "/cosmwasm.wasm.v1.MsgStoreFullCircuit".into()
+    }
+}
+/// MsgStoreFullCircuitResponse returns param id and zkid.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgStoreFullCircuitResponse {
+    #[prost(uint64, tag = "1")]
+    pub cs_param_id: u64,
+    #[prost(uint64, tag = "2")]
+    pub zk_id: u64,
+    #[prost(bytes = "vec", tag = "3")]
+    pub cs_checksum: ::prost::alloc::vec::Vec<u8>,
+    #[prost(bytes = "vec", tag = "4")]
+    pub vk_checksum: ::prost::alloc::vec::Vec<u8>,
+}
+impl ::prost::Name for MsgStoreFullCircuitResponse {
+    const NAME: &'static str = "MsgStoreFullCircuitResponse";
+    const PACKAGE: &'static str = "cosmwasm.wasm.v1";
+    fn full_name() -> ::prost::alloc::string::String {
+        "cosmwasm.wasm.v1.MsgStoreFullCircuitResponse".into()
+    }
+    fn type_url() -> ::prost::alloc::string::String {
+        "/cosmwasm.wasm.v1.MsgStoreFullCircuitResponse".into()
     }
 }
 /// MsgInstantiateContract create a new smart contract instance for the given

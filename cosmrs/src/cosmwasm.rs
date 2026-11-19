@@ -27,7 +27,8 @@ pub use self::{
     msg_initiate_contract::{MsgInstantiateContract, MsgInstantiateContractResponse},
     msg_migrate_contract::{MsgMigrateContract, MsgMigrateContractResponse},
     msg_store_code::{
-        MsgStoreCircuit, MsgStoreCircuitResponse, MsgStoreCode, MsgStoreCodeResponse,
+        CircuitParamAuth, MsgStoreCircuit, MsgStoreCircuitResponse, MsgStoreCode,
+        MsgStoreCodeResponse, MsgStoreFullCircuit,
     },
     msg_update_admin::{MsgUpdateAdmin, MsgUpdateAdminResponse},
     query_code_response::QueryCodeResponse,
